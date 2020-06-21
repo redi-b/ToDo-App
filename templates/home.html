@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block list_content %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
+
+<ul class="list-group">
+    {% for todo in todo_list %}
+      <form action="delete_item/{{todo.id}}" method="POST">
+        {{added_date}}
+        {% csrf_token %}
+        <a href="/" class="list-link">
+        <li class="list-group-item">{{todo.text}}
+          <button type="submit" class="btn btn-danger float-right btn-sm" name="delete">Delete</button>
+        </li></a>
+    {% endfor %}
+    </form>
+</ul>
+{% endblock %}
