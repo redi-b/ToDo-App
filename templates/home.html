@@ -4,16 +4,35 @@
 {% block list_content %}
 <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
 
+<div class="col s1">
 <ul class="list-group">
-    {% for todo in todo_list %}
-      <form action="delete_item/{{todo.id}}" method="POST">
+    {% for todo in todo_list_completed %}
+      <form action="delete/delete_item/{{todo.id}}" method="POST">
         {{added_date}}
         {% csrf_token %}
         <a href="/" class="list-link">
-        <li class="list-group-item">{{todo.text}}
+        <li class="list-group-item">
+          {{todo.text}}
           <button type="submit" class="btn btn-danger float-right btn-sm" name="delete">Delete</button>
         </li></a>
     {% endfor %}
     </form>
 </ul>
+</div>
+<div class="col s1">
+  <ul class="list-group">
+      {% for todo in todo_list_due %}
+        <form action="delete/delete_item/{{todo.id}}" method="POST">
+          {{added_date}}
+          {% csrf_token %}
+          <a href="/" class="list-link">
+          <li class="list-group-item">
+            {{todo.text}}
+            <button type="submit" class="btn btn-info float-right btn-sm" name="done" formaction="done/done_item/{{todo.id}}">Done</button>
+            <button type="submit" class="btn btn-danger float-right btn-sm" name="delete">Delete</button>
+        </form>
+          </li></a>
+      {% endfor %}
+  </ul>
+  </div>
 {% endblock %}

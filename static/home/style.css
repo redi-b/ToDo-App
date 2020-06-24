@@ -2,3 +2,23 @@ a.list-link {
   text-decoration: none;
   color: black;
 }
+
+.mycontainer {
+  background-color: rgba(208, 255, 0, 0.849); 
+  border: solid 3px;
+  border-radius: 10px; 
+  padding: 7px;
+  box-shadow: 2px 3px 0px 2px;
+}
+
+.mytitle {
+  background-color: rgb(52, 53, 56);
+  color: burlywood;
+  border: solid 3px burlywood;
+  border-radius: 10px; 
+  padding: 7px;
+}
+
+#title {
+  text-align: center;
+}

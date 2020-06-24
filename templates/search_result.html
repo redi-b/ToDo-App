@@ -1,14 +1,29 @@
 {% extends 'base.html' %}
 
 {% block list_content %}
-<ul class="list-group">
-    {% for todo in items_found %}
-    <form action="delete_item/{{todo.id}}" method="POST">
-      {% csrf_token %}
-      <li class="list-group-item">{{todo.text}}
-        <button type="submit" class="btn btn-danger float-right btn-sm" name="delete">Delete</button>
-      </li>
-    {% endfor %}
-    </form>
-</ul>
+<div class="col s1">
+  <ul class="list-group">
+      {% for todo in items_found_completed %}
+      <form action="delete_item/{{todo.id}}" method="POST">
+        {% csrf_token %}
+        <li class="list-group-item">{{todo.text}}
+          <button type="submit" class="btn btn-danger float-right btn-sm" name="delete">Delete</button>
+        </li>
+      {% endfor %}
+      </form>
+  </ul>
+</div>
+<div class="col s1">
+  <ul class="list-group">
+      {% for todo in items_found_due %}
+      <form action="delete_item/{{todo.id}}" method="POST">
+        {% csrf_token %}
+        <li class="list-group-item">{{todo.text}}
+          <button type="submit" class="btn btn-info float-right btn-sm" name="done" formaction="done/done_item/{{todo.id}}">Done</button>
+          <button type="submit" class="btn btn-danger float-right btn-sm" name="delete">Delete</button>
+        </li>
+      {% endfor %}
+      </form>
+  </ul>
+</div>
 {% endblock %}

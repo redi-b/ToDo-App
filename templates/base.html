@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="../static/home/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
      crossorigin="anonymous">
@@ -12,7 +12,7 @@
      crossorigin="anonymous"></script>
     <title>Todo App</title>
   </head>
-  <body>
+  <body style="background-color: darkslategrey;">
     <nav class="navbar navbar-dark bg-warning mb-5">
       <a href="/" class="navbar-brand float-left">ToDo App</a>
         <form class="form-inline float-right" action="search/" method="POST">
@@ -22,13 +22,14 @@
         </form>
     </nav>
 
-    <div class="container">
+    <div class="container mycontainer">
       <div class="row">
         <div class="col">
           <h3>Add to your List</h3>
         </div>
       </div>
 
+    <div class="conatiner">
     <div class="row">
       <div class="col s4">
         <div class="input-group flex-nowrap">
@@ -44,20 +45,46 @@
       </div>
       </div>
     </div>
+  </div>
+
     <div class="container mt-5">
       <div class="row">
         <div class="col s1">
-          <form action="delete_all/" method="POST">
+          <form action="delete/delete_all/" method="POST">
             {% csrf_token %}
-            <li class="list-group-item title"><strong>Todos</strong>
+            <li class="list-group-item title" id="title"><strong class="mytitle">Todos</strong>
+              <button type="submit" class="btn btn-danger float-right btn-sm" name="delete">
+                <span class="glyphicon glyphicon-trash"></span>
+                Delete All
+              </button>
+            </li>
+          </form>
+        </div>        
+      </div>
+      <div class="row">
+        <div class="col s1">
+          <form action="delete/delete_completed/" method="POST">
+            {% csrf_token %}
+            <li class="list-group-item title"><strong class="mytitle">Completed Tasks</strong>
               <button type="submit" class="btn btn-danger float-right btn-sm" name="delete">Delete All</button>
             </li>
           </form>
-              {% block list_content %} {% endblock %}
         </div>
+        <div class="col s1">
+          <form action="delete/delete_due/" method="POST">
+            {% csrf_token %}
+            <li class="list-group-item title"><strong class="mytitle">Due Tasks</strong>
+              <button type="submit" class="btn btn-info float-right btn-sm" name="done" formaction="done/done_all/{{todo.id}}">Mark all as done</button>
+              <button type="submit" class="btn btn-danger float-right btn-sm" name="delete">Delete All</button>
+            </li>
+          </form>
+        </div>      
       </div>
-
+      <div class="row">
+          {% block list_content %} {% endblock %}
+      </div>
     </div>
+  </div>
     {% block body_content %}
     {% endblock %}
   </body>
