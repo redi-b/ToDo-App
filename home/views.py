@@ -12,7 +12,7 @@ def index(request):
         'todo_list_due': todo_list_due,
         'todo_list_completed': todo_list_completed
     }
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)
 
 
 @csrf_exempt
